@@ -42,6 +42,9 @@ return {
             ["<cr>"] = "open_with_window_picker",
           },
         },
+        filtered_items = {
+          hide_dotfiles = false, -- Explicitly prevents hiding dotfiles
+        },
       },
       buffers = {
         window = {
