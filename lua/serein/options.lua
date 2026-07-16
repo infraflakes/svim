@@ -14,8 +14,8 @@ vim.g.clipboard = {
     ["*"] = require("vim.ui.clipboard.osc52").copy "*",
   },
   paste = {
-    ['+'] = function() end,
-    ['*'] = function() end,
+    ["+"] = function() end,
+    ["*"] = function() end,
   },
 }
 vim.o.breakindent = true
