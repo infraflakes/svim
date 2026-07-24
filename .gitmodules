@@ -1,6 +1,0 @@
-[submodule "config/nvim"]
-	path = config/nvim
-	url = git@github.com:infraflakes/svim
-[submodule "config/swm"]
-	path = config/swm
-	url = git@github.com:infraflakes/swm
