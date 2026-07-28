@@ -15,7 +15,6 @@ require("lazy").setup({
   { import = "plugins.dev" },
   { import = "plugins.markdown" },
   { import = "plugins.theme" },
-  { import = "plugins.status-line" },
   { import = "plugins.dashboard" },
   { import = "plugins.terminal" },
   { import = "plugins.neotree" },
