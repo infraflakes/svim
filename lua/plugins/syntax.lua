@@ -28,7 +28,16 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
 })
 return {
-
+  {
+    "MeanderingProgrammer/markdown.nvim",
+    name = "render-markdown.nvim",
+    ft = "markdown",
+    config = function()
+      require("render-markdown").setup {
+        headings = { "Headline1", "Headline2", "Headline3" },
+      }
+    end,
+  },
   {
     "folke/todo-comments.nvim",
     event = "VimEnter",
@@ -54,6 +63,7 @@ return {
         "svelte",
         "typescript",
         "markdown",
+        "markdown_inline",
       }
 
       -- Use the Vim command instead of the Lua API

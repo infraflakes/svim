@@ -12,8 +12,7 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 require("lazy").setup({
   { import = "plugins.which-key" },
-  { import = "plugins.dev" },
-  { import = "plugins.markdown" },
+  { import = "plugins.syntax" },
   { import = "plugins.theme" },
   { import = "plugins.dashboard" },
   { import = "plugins.terminal" },
