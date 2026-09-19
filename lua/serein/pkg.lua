@@ -18,6 +18,7 @@ require("lazy").setup({
   { import = "plugins.terminal" },
   { import = "plugins.neotree" },
   { import = "plugins.telescope" },
+  { import = "plugins.cursor" },
 }, {
   lockfile = vim.fn.stdpath "cache" .. "/lazy-lock.json",
   ui = {
