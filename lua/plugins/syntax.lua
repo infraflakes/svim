@@ -46,83 +46,40 @@ return {
   },
 
   {
+    "infraflakes/kiru-tree-sitter",
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
-    branch = "main",
-    lazy = false,
+    branch = "main", -- Must use the 'main' branch for 0.12+
+    build = ":TSUpdate",
     config = function()
-      -- We stop trying to use require("nvim-treesitter") as a manager.
-      -- Instead, we use the Neovim command-line interface which is more stable.
-
-      local ensure_installed = {
-        "bash",
-        "c",
-        "lua",
-        "nix",
-        "go",
-        "rust",
-        "svelte",
-        "typescript",
-        "markdown",
-        "markdown_inline",
+      local ts = require "nvim-treesitter"
+      ts.setup {
+        indent = { enable = true }, -- Indentation
       }
-
-      -- Use the Vim command instead of the Lua API
-      -- This is much more resilient to the plugin's internal refactors
-      vim.defer_fn(function()
-        for _, parser in ipairs(ensure_installed) do
-          -- Check if the parser is actually loadable by the core engine
-          local ok = pcall(vim.treesitter.query.get, parser, "highlights")
-          if not ok then
-            vim.cmd("TSInstallSync " .. parser)
-          end
-        end
-      end, 100)
-
-      -- The 0.12 "Standard" for Highlighting
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-          -- Use the native Neovim engine directly
-          pcall(vim.treesitter.start)
-
-          -- Indent is the ONLY thing we still need from the plugin
-          -- We wrap it in a pcall so your editor doesn't crash if the plugin is missing
-          pcall(function()
-            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-          end)
-        end,
-      })
     end,
   },
 
   {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter", -- Lazy load on insert
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer", -- buffer words
-      "hrsh7th/cmp-path", -- file paths
+    "saghen/blink.cmp",
+    version = "*",
+    opts = {
+      keymap = {
+        preset = "default",
+        ["<CR>"] = { "accept", "fallback" },
+        ["<C-Space>"] = { "show", "show_documentation", "hide" },
+      },
+      sources = {
+        default = { "lsp", "path", "buffer" },
+        providers = {
+          buffer = {
+            min_keyword_length = 3,
+          },
+        },
+      },
+      snippets = { preset = "default" },
     },
-    config = function()
-      local cmp = require "cmp"
-      cmp.setup {
-        -- Use Neovim's native snippet expansion
-        snippet = {
-          expand = function(args)
-            vim.snippet.expand(args.body)
-          end,
-        },
-        mapping = cmp.mapping.preset.insert {
-          ["<CR>"] = cmp.mapping.confirm { select = true },
-          ["<C-Space>"] = cmp.mapping.complete(),
-        },
-        sources = cmp.config.sources {
-          { name = "nvim_lsp", priority = 1000 },
-          { name = "path" },
-          -- Only load buffer if LSP isn't providing enough info
-          { name = "buffer", keyword_length = 3 },
-        },
-      }
-    end,
   },
 
   { -- Autoformat
