@@ -13,7 +13,6 @@ return {
         require("neo-tree.command").execute {
           toggle = true,
           reveal = true,
-          position = "float",
         }
       end,
       desc = "Neo-tree Reveal Float",
@@ -23,7 +22,8 @@ return {
     require("neo-tree").setup {
       popup_border_style = "rounded",
       window = {
-        position = "float",
+        position = "left",
+        -- position = "float",
         width = 35,
         mapping_options = {
           noremap = true,
