@@ -54,6 +54,7 @@ return {
     branch = "main", -- Must use the 'main' branch for 0.12+
     build = ":TSUpdate",
     config = function()
+      require("nvim-treesitter.install").prefer_git = true
       local ts = require "nvim-treesitter"
       ts.setup {
         indent = { enable = true }, -- Indentation
