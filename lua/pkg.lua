@@ -11,7 +11,7 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 require("lazy").setup({
-  { import = "plugins.which-key" },
+  { import = "plugins.keybinds" },
   { import = "plugins.syntax" },
   { import = "plugins.theme" },
   { import = "plugins.dashboard" },
