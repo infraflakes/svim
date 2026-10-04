@@ -15,27 +15,9 @@ require("lazy").setup({
   { import = "plugins.syntax" },
   { import = "plugins.theme" },
   { import = "plugins.dashboard" },
-  { import = "plugins.terminal" },
   { import = "plugins.neotree" },
   { import = "plugins.telescope" },
   { import = "plugins.cursor" },
 }, {
   lockfile = vim.fn.stdpath "cache" .. "/lazy-lock.json",
-  ui = {
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = "⌘",
-      config = "🛠",
-      event = "📅",
-      ft = "📂",
-      init = "⚙",
-      keys = "🗝",
-      plugin = "🔌",
-      runtime = "💻",
-      require = "🌙",
-      source = "📄",
-      start = "🚀",
-      task = "📌",
-      lazy = "💤 ",
-    },
-  },
 })

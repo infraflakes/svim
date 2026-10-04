@@ -26,10 +26,16 @@ return {
           "--glob=!.git/*",
         },
 
-        -- Faster previewing for large files
+        -- Faster previewing for large files & bypass TS for Markdown
         buffer_previewer_maker = function(filepath, bufnr, opts)
           opts = opts or {}
           filepath = vim.fn.expand(filepath)
+
+          -- Disable filetype auto-detection / Treesitter syntax highlighting for Markdown previewing
+          if filepath:match "%.md$" or filepath:match "%.markdown$" then
+            opts.use_ft_detect = false
+          end
+
           vim.loop.fs_stat(filepath, function(_, stat)
             if not stat or stat.size > 100000 then
               return
